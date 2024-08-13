@@ -5,6 +5,8 @@ import rateLimit from 'express-rate-limit';
 
 const app = express();
 
+app.use(express.static("./public"));
+
 app.use(express.urlencoded({
     limit: "16kb",
     extended: true
@@ -28,3 +30,7 @@ const limiter = rateLimit({
     message: "Too many requests from this IP address, try again later",
     header: true
 })
+
+app.use(limiter);
+
+export {app};
